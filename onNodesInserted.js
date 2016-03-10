@@ -71,16 +71,13 @@
 
                 document.head.appendChild(styleAnimation);
 
-                var bindAnimationLater = setTimeout(function() {
-                    document.addEventListener('animationstart', eventHandler, false);
-                    document.addEventListener('MSAnimationStart', eventHandler, false);
-                    document.addEventListener('webkitAnimationStart', eventHandler, false);
-                    //event support is not consistent with DOM prefixes
-                }, 50); //starts listening later to skip elements found on startup. this might need tweaking
+                //event support is not consistent with DOM prefixes
+                document.addEventListener('animationstart', eventHandler, false);
+                document.addEventListener('MSAnimationStart', eventHandler, false);
+                document.addEventListener('webkitAnimationStart', eventHandler, false);
 
                 return {
                     destroy: function() {
-                        clearTimeout(bindAnimationLater);
                         if (styleAnimation) {
                             document.head.removeChild(styleAnimation);
                             styleAnimation = null;
