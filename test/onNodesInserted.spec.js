@@ -263,4 +263,47 @@ describe('onNodesInserted', function() {
 			})
 		});
 	});
+	describe('Elements added instantly', function() {
+		beforeEach(function() {
+			document.innerHTML = window.__html__['test/fixtures/multiElement.html'];
+		});
+		it('Add 1 element', function() {
+			runs(function() {
+				destroy = onNodesInserted('.hello', function(elements) {
+					els = elements;
+				});
+				setTimeout(function() {
+					document.body.innerHTML +=  window.__html__['test/fixtures/oneElement.html'];
+				}, 10);
+			});
+			waitsFor(function() {
+				return !!els;
+			});
+			runs(function() {
+				expect(els.length).toBe(1);
+				expect(els[0].className).toBe('hello');
+			})
+		});
+		it('Add 3 elements', function() {
+			runs(function() {
+				destroy = onNodesInserted('.hello', function(elements) {
+					els = elements;
+				});
+				setTimeout(function() {
+					document.body.innerHTML +=  window.__html__['test/fixtures/oneElement.html'];
+					document.body.innerHTML +=  window.__html__['test/fixtures/oneElement.html'];
+					document.body.innerHTML +=  window.__html__['test/fixtures/oneElement.html'];
+				}, 10);
+			});
+			waitsFor(function() {
+				return !!els;
+			});
+			runs(function() {
+				expect(els.length).toBe(3);
+				expect(els[0].className).toBe('hello');
+				expect(els[1].className).toBe('hello');
+				expect(els[2].className).toBe('hello');
+			})
+		});
+	});
 });
