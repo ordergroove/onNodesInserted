@@ -1,16 +1,14 @@
 {
-  "name": "onnodesinserted",
+  "name": "@ordergroove/onnodesinserted",
   "version": "0.8.2",
   "description": "Listen to node inserted events",
   "main": "onNodesInserted.js",
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "karma": "~0.12.12",
-    "karma-jasmine": "~0.1.5"
-  },
   "devDependencies": {
+    "karma": "~0.12.12",
+    "karma-jasmine": "~0.1.5",
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-chrome-launcher": "^0.1.3",
     "karma-html2js-preprocessor": "^0.1.0",
